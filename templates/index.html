@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    {% for item in files %}
+        <div><a class="btn" href="play/{{ item.number }}">{{ item.file 
+}}</a><br /></div>
+    {% endfor %}
+{% endblock %}

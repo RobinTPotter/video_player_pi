@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+ <h1>Controls</h1>
+   {% for item in commands %}
+        <div><a class="btn" href="/command/{{ item.letter }}">{{ item.name 
+}}</a><br /></div>
+    {% endfor %}
+{% endblock %}
