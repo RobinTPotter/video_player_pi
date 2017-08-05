@@ -1,0 +1,6 @@
+/usr/bin/python: No module named flask.__main__; 'flask' is a package and cannot be directly executed
+ * Running on http://0.0.0.0:12345/ (Press CTRL+C to quit)
+192.168.1.14 - - [05/Aug/2017 07:38:14] "GET / HTTP/1.1" 200 -
+192.168.1.14 - - [05/Aug/2017 07:38:14] "GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 -
+192.168.1.14 - - [05/Aug/2017 07:38:14] "GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 -
+192.168.1.14 - - [05/Aug/2017 07:38:14] "GET /favicon.ico HTTP/1.1" 404 -
