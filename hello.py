@@ -19,6 +19,8 @@ commands = [
 	{'letter': 'kill', 'name': 'killall' },
 ]
 
+#print dir(app)
+
 @app.route('/command/<command>')
 def send_command(command):
 	showMenu = False
@@ -47,6 +49,15 @@ def send_command(command):
 	else:
 		return render_template('commands.html', commands=commands)
 
+
+@app.route('/thumb/<int:thing>')
+def thumb(thing):
+ 	file = [f['file'] for f in files if f['number']==thing][0]
+	thumbnails = os.listdir(app.static_folder + '/' + THU+'/'+file)
+	thumbnails = sorted(thumbnails)
+	thumbnails = [ THU + '/'+ file +'/'+ t for t in thumbnails]
+	print thumbnails
+	return render_template('thumbnails.html', thumbnails=thumbnails) 
 
 @app.route('/commands')
 def commands_route():
@@ -79,7 +90,7 @@ def hello():
 	files = zip(files,range(0,len(files)))
 	files = [{'directory': a[0], 'file':a[1], 'number': b} for a,b in files]
 	files.sort(key=lambda x: x['file'])
-	#print(files)
+	print(files)
 	#for d,f,n in files:
 	#	print((d,f,n))		
 	#	out += '<li><a href="play/'+str(n)+'">'+f+'</a></li>'
