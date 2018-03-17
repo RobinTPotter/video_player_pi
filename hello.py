@@ -1,3 +1,6 @@
+
+
+
 from subprocess import Popen, PIPE, STDOUT
 from config import *
 from flask import Flask, render_template, redirect, url_for
@@ -56,6 +59,7 @@ def thumb(thing):
 	thumbnails = os.listdir(app.static_folder + '/' + THU+'/'+file)
 	thumbnails = sorted(thumbnails)
 	thumbnails = [ THU + '/'+ file +'/'+ t for t in thumbnails]
+	thumbnails = [ {'name': file, 'pos': t.replace('.png',''), 'number': thing} for file in thumbnails]
 	print thumbnails
 	return render_template('thumbnails.html', thumbnails=thumbnails) 
 
@@ -63,11 +67,12 @@ def thumb(thing):
 def commands_route():
 	return render_template('commands.html', commands=commands)
 
-@app.route('/play/<int:thing>')
-def play(thing):
+@app.route('/play/<int:thing>/<string:pos>')
+@app.route('/play/<int:thing>', defaults={'pos': '0'})
+def play(thing,pos):
  	file = [f['directory']+'/'+f['file'] for f in files if f['number']==thing][0]
 	global p
- 	p = Popen(['omxplayer', '-b',file], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
+ 	p = Popen(['omxplayer', '-b',file,'--pos',pos], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
 	print(p)
 	print(dir(p))
 	return render_template('commands.html', commands=commands)

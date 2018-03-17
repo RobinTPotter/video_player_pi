@@ -2,7 +2,7 @@
 {% block title %}Index{% endblock %}
 {% block content %}
     {% for item in thumbnails %}
-        <div><a class="btn" href="#"><img src="{{ url_for('static', filename=item )
+        <div><a class="btn" href="/play/{{item.number}}/{{item.pos}}"><img src="{{ url_for('static', filename=item.name )
 }}"/></a><br /></div>
     {% endfor %}
 {% endblock %}
