@@ -2,7 +2,7 @@
 {% block title %}Index{% endblock %}
 {% block content %}
     {% for item in files %}
-        <div><a class="btn" href="play/{{ item.number }}">{{ item.file }}</a>
-  <a class="btn" href="thumb/{{ item.number }}">T</a><br /></div>
+        <div><span><a class="btn" href="play/{{ item.number }}">{{ item.file }}</a>
+  <a class="btn" href="thumb/{{ item.number }}">T</a></span</div>
     {% endfor %}
 {% endblock %}

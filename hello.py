@@ -56,12 +56,16 @@ def send_command(command):
 @app.route('/thumb/<int:thing>')
 def thumb(thing):
  	file = [f['file'] for f in files if f['number']==thing][0]
-	thumbnails = os.listdir(app.static_folder + '/' + THU+'/'+file)
-	thumbnails = sorted(thumbnails)
-	thumbnails = [ THU + '/'+ file +'/'+ t for t in thumbnails]
-	thumbnails = [ {'name': file, 'pos': t.replace('.png',''), 'number': thing} for file in thumbnails]
-	print thumbnails
-	return render_template('thumbnails.html', thumbnails=thumbnails) 
+	try:
+		thumbnails = os.listdir(app.static_folder + '/' + THU+'/'+file)
+		thumbnails = sorted(thumbnails)
+		thumbnails = [ THU + '/'+ file +'/'+ t for t in thumbnails]
+		thumbnails = [ {'name': file, 'pos': t.replace('.png',''), 'number': thing} for file in thumbnails]
+		print thumbnails
+		return render_template('thumbnails.html', thumbnails=thumbnails) 
+	except:
+		#return render_template('index.html', files=files)
+		return redirect('/')
 
 @app.route('/commands')
 def commands_route():
@@ -80,6 +84,7 @@ def play(thing,pos):
 
 @app.route('/')
 def hello():
+	from config import *
 	global files
 	files = []
 	num = 0
