@@ -1,7 +1,7 @@
 #!/bin/bash
 port=12345
-echo "kill -9 \$(lsof -i :$port | grep -v COMMAND | awk '{print \$2}')" > stopme
-chmod +x stopme
+echo "kill -9 \$(lsof -i :$port | grep -v COMMAND | awk '{print \$2}')" > killme
+chmod +x killme
 export FLASK_APP=hello.py
 python -m flask run --host=0.0.0.0 --port=$port
 
