@@ -1,1 +1,0 @@
-kill -9 $(lsof -i :12345 | grep -v COMMAND | awk '{print $2}')
